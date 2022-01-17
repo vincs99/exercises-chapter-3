@@ -1,6 +1,5 @@
-from numbers import Number
-
-
+from numbers import Number, Integral
+import numpy as np
 class Polynomial:
 
     def __init__(self, coefs):
@@ -50,3 +49,59 @@ class Polynomial:
 
     def __radd__(self, other):
         return self + other
+
+    def __mul__(self, other):
+
+        if isinstance(other, Number):
+            coefs=tuple(element*other for element in self.coefficients)
+            return Polynomial(coefs)
+        
+        elif isinstance(other,Polynomial):
+
+            def unitmult(n):
+            
+                coeffs=tuple(np.zeros(n)) + self.coefficients
+                return Polynomial(coeffs)
+            newpol=Polynomial((0,))
+            for c, d in enumerate(other.coefficients):
+               newpol += d*unitmult(c)
+            return newpol
+        
+        else:
+            return NotImplemented 
+    
+    def __rmul__(self, other):
+
+        return self * other
+
+    def __sub__(self, other):
+
+        return self + other * -1
+
+    def __rsub__(self, other):
+
+        return (self-other) * -1
+
+    def __pow__(self, other):
+
+        if isinstance(other, Integral) and other > 0 : 
+            newpol=Polynomial((1,))
+            n=1
+            while n <= other : 
+                newpol=self*newpol
+                n+=1
+            return newpol
+        else:
+            return NotImplemented
+
+    def __call__(self, other):
+        if isinstance(other,Number) :
+            return sum(d*(other**c) for c, d in enumerate(self.coefficients))
+
+        else :
+            return NotImplemented
+            
+
+    
+
+
