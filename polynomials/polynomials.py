@@ -100,6 +100,26 @@ class Polynomial:
 
         else :
             return NotImplemented
+
+    def dx(self):
+        if len(self.coefficients) == 1 :
+            return Polynomial((0,))
+        else:
+            return Polynomial(tuple(c*d for c, d in
+            enumerate(self.coefficients[1:], start=1)))
+
+def derivative(obj):
+
+    if isinstance(obj, Polynomial):
+        return obj.dx()
+
+    else:
+        return NotImplemented
+
+
+
+
+
             
 
     
