@@ -84,7 +84,7 @@ class Polynomial:
 
     def __pow__(self, other):
 
-        if isinstance(other, Integral) and other > 0 : 
+        if isinstance(other, Integral) and other : 
             newpol=Polynomial((1,))
             n=1
             while n <= other : 
