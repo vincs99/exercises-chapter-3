@@ -1,5 +1,7 @@
 from numbers import Number, Integral
 import numpy as np
+
+
 class Polynomial:
 
     def __init__(self, coefs):
@@ -53,7 +55,7 @@ class Polynomial:
     def __mul__(self, other):
 
         if isinstance(other, Number):
-            coefs=tuple(element*other for element in self.coefficients)
+            coefs = tuple(element*other for element in self.coefficients)
             return Polynomial(coefs)
         
         elif isinstance(other,Polynomial):
@@ -115,13 +117,3 @@ def derivative(obj):
 
     else:
         return NotImplemented
-
-
-
-
-
-            
-
-    
-
-

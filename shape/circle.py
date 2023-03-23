@@ -1,8 +1,7 @@
-
 class Circle: 
 
     def __init__(self, centr, rad):
-        
+
         self.centre = centr
         self.radius = rad
 
